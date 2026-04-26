@@ -163,7 +163,6 @@ border-radius:100px;padding:5px 12px;
 </div>
 
 <div class="app">
-  <div class="badge"><div class="bdot"></div>Ascenseur · Calcul</div>
   <h1>Angle d'enroulement</h1>
   <div class="sub">Poulie de traction — Machine en haut</div>
 
@@ -240,6 +239,7 @@ border-radius:100px;padding:5px 12px;
 
 function computeAngle(D1,D2,CF,H) {
   const R1=D1/2, R2=D2/2, dx=CF-R1-R2, dy=H;
+  if (CF < D1) return {error:`CF (${Math.round(CF)} mm) < Ø traction (${Math.round(D1)} mm) — Impossible`};
   if (dx<0) return {error:`CF minimum = ${Math.round(R1+R2)} mm`};
   if (!D2||(dx===0&&dy===0)) return {alpha:180,dx:0,L:0,direct:true,R1,R2,CF};
   const L=Math.sqrt(dx*dx+dy*dy);
@@ -283,7 +283,7 @@ function go() {
 function setErr(msg) {
   ['angle-val','dx-val','L-val','frac-val'].forEach(id=>setV(id,'—'));
   document.getElementById('angle-val').style.color='#334155';
-  document.getElementById('pill').className='pill err';
+  document.getElementById('pill').className='pill bad';
   setT(msg);
   document.getElementById('schema').innerHTML=`<text x="300" y="200" text-anchor="middle" fill="#334155" font-size="14" font-family="Inter,sans-serif">${msg}</text>`;
   setV('stag','—');
