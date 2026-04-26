@@ -9,58 +9,39 @@
 <meta name="theme-color" content="#080c14">
 <title>Angle d'enroulement</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
 html { background: #080c14; }
-
 body {
-font-family: ‘Inter’, -apple-system, sans-serif;
-background: #080c14;
-color: #e2e8f0;
-min-height: 100vh;
--webkit-font-smoothing: antialiased;
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: #080c14;
+  color: #e2e8f0;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* ── Fond animé ───────────────────────────── */
-.bg {
-position: fixed; inset: 0; z-index: 0; overflow: hidden;
-background: #080c14;
-}
-.bg-blob {
+.bg { position: fixed; inset: 0; z-index: 0; overflow: hidden; background: #080c14; }
+.blob {
 position: absolute; border-radius: 50%;
-filter: blur(80px); opacity: 0.25;
+filter: blur(90px); opacity: 0.22;
+animation: bm 18s ease-in-out infinite alternate;
 }
-.bg-blob-1 {
-width: 600px; height: 600px; top: -200px; left: -150px;
-background: radial-gradient(circle, #1d4ed8, transparent 70%);
-animation: blobMove 18s ease-in-out infinite alternate;
-}
-.bg-blob-2 {
-width: 500px; height: 500px; top: -100px; right: -100px;
-background: radial-gradient(circle, #4f46e5, transparent 70%);
-animation: blobMove 14s ease-in-out infinite alternate-reverse;
-}
-.bg-blob-3 {
-width: 400px; height: 400px; bottom: 10%; left: 30%;
-background: radial-gradient(circle, #0f766e, transparent 70%);
-animation: blobMove 20s ease-in-out infinite alternate;
-}
-@keyframes blobMove {
-0%   { transform: translate(0,0) scale(1); }
-50%  { transform: translate(40px,30px) scale(1.1); }
-100% { transform: translate(-20px,50px) scale(0.95); }
+.b1 { width:600px;height:600px;top:-200px;left:-150px;background:radial-gradient(circle,#1d4ed8,transparent 70%); animation-duration:18s; }
+.b2 { width:500px;height:500px;top:-100px;right:-100px;background:radial-gradient(circle,#4f46e5,transparent 70%); animation-duration:14s; animation-direction:alternate-reverse; }
+.b3 { width:400px;height:400px;bottom:10%;left:30%;background:radial-gradient(circle,#0f766e,transparent 70%); animation-duration:20s; }
+@keyframes bm {
+0%   { transform:translate(0,0) scale(1); }
+50%  { transform:translate(40px,30px) scale(1.1); }
+100% { transform:translate(-20px,50px) scale(0.95); }
 }
 
-/* ── Contenu ──────────────────────────────── */
 .app {
 position: relative; z-index: 1;
 max-width: 1000px; margin: 0 auto;
 padding: 40px 18px 80px;
 }
 
-/* ── Header ───────────────────────────────── */
 .badge {
 display: inline-flex; align-items: center; gap: 7px;
 font-size: 10px; font-weight: 700; letter-spacing: 0.14em;
@@ -69,156 +50,106 @@ background: rgba(59,130,246,0.15);
 border: 1px solid rgba(59,130,246,0.3);
 border-radius: 100px; padding: 5px 13px; margin-bottom: 16px;
 }
-.badge-dot {
-width: 5px; height: 5px; border-radius: 50%;
-background: #3b82f6; box-shadow: 0 0 8px #3b82f6;
-}
-h1 {
-font-size: clamp(30px, 6vw, 52px);
-font-weight: 800; letter-spacing: -0.03em;
-line-height: 1.05; color: #fff;
-margin-bottom: 6px;
-}
-.subtitle { font-size: 15px; color: #64748b; margin-bottom: 40px; }
+.bdot { width:5px;height:5px;border-radius:50%;background:#3b82f6;box-shadow:0 0 8px #3b82f6; }
 
-/* ── Grid ─────────────────────────────────── */
-.grid-2 {
+h1 {
+font-size: clamp(30px,6vw,52px);
+font-weight: 800; letter-spacing: -0.03em;
+line-height: 1.05; color: #fff; margin-bottom: 6px;
+}
+.sub { font-size: 15px; color: #64748b; margin-bottom: 40px; }
+
+.grid2 {
 display: grid;
-grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
 gap: 14px; margin-bottom: 14px;
 }
 
-/* ── Card ─────────────────────────────────── */
 .card {
-background: rgba(15,23,42,0.9);
+background: rgba(15,23,42,0.92);
 border: 1px solid rgba(255,255,255,0.07);
-border-radius: 20px;
-overflow: hidden;
-position: relative;
+border-radius: 20px; overflow: hidden; position: relative;
 }
 .card::before {
-content: ‘’;
-position: absolute; top: 0; left: 0; right: 0; height: 1px;
-background: linear-gradient(90deg, transparent 10%, rgba(255,255,255,0.1) 50%, transparent 90%);
+content:’’;position:absolute;top:0;left:0;right:0;height:1px;
+background:linear-gradient(90deg,transparent 10%,rgba(255,255,255,0.1) 50%,transparent 90%);
 }
-.card-body { padding: 22px; }
-.card-title {
-font-size: 10px; font-weight: 700; letter-spacing: 0.13em;
-text-transform: uppercase; color: #334155; margin-bottom: 20px;
+.cb { padding: 22px; }
+.ct {
+font-size:10px;font-weight:700;letter-spacing:0.13em;
+text-transform:uppercase;color:#334155;margin-bottom:20px;
 }
 
-/* ── Inputs ───────────────────────────────── */
 .fields { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-
 .field {
 background: rgba(2,8,23,0.8);
 border: 1px solid rgba(255,255,255,0.07);
 border-radius: 13px; padding: 14px 14px 10px;
-transition: border-color 0.2s;
-cursor: text;
+transition: border-color 0.2s; cursor: text;
 }
 .field:focus-within { border-color: rgba(59,130,246,0.6); }
-
-.field-label {
-font-size: 10px; font-weight: 600; letter-spacing: 0.1em;
-text-transform: uppercase; color: #334155; margin-bottom: 7px;
-display: block;
+.fl {
+font-size:10px;font-weight:600;letter-spacing:0.1em;
+text-transform:uppercase;color:#334155;margin-bottom:7px;display:block;
 }
-.field-row { display: flex; align-items: baseline; gap: 5px; }
-
+.fr { display:flex;align-items:baseline;gap:5px; }
 .field input {
-background: transparent; border: none; outline: none;
-font-size: 28px; font-weight: 500;
-font-family: ‘JetBrains Mono’, monospace;
-color: #f1f5f9; width: 100%;
--webkit-appearance: none;
-letter-spacing: -0.02em;
+background:transparent;border:none;outline:none;
+font-size:28px;font-weight:500;
+font-family:‘JetBrains Mono’,monospace;
+color:#f1f5f9;width:100%;-webkit-appearance:none;letter-spacing:-0.02em;
 }
-.field-unit { font-size: 13px; color: #334155; font-family: ‘JetBrains Mono’, monospace; }
-.field-hint { font-size: 9px; color: #334155; margin-top: 4px; letter-spacing: 0.05em; }
+.fu { font-size:13px;color:#334155;font-family:‘JetBrains Mono’,monospace; }
+.fh { font-size:9px;color:#334155;margin-top:4px;letter-spacing:0.05em; }
 
-/* ── Résultats ────────────────────────────── */
-.result-lbl {
-font-size: 10px; font-weight: 600; letter-spacing: 0.1em;
-text-transform: uppercase; color: #334155; margin-bottom: 8px;
+.rl { font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#334155;margin-bottom:8px; }
+.rr { display:flex;align-items:flex-end;gap:5px;margin-bottom:20px; }
+.rv {
+font-family:‘JetBrains Mono’,monospace;
+font-size:clamp(52px,9vw,76px);font-weight:600;line-height:1;
+letter-spacing:-0.04em;transition:color 0.4s;color:#22c55e;
 }
-.result-row { display: flex; align-items: flex-end; gap: 5px; margin-bottom: 20px; }
-.result-num {
-font-family: ‘JetBrains Mono’, monospace;
-font-size: clamp(52px, 9vw, 76px);
-font-weight: 600; line-height: 1;
-letter-spacing: -0.04em;
-transition: color 0.4s;
-color: #22c55e;
-}
-.result-unit {
-font-size: 30px; color: #334155;
-font-family: ‘JetBrains Mono’, monospace;
-margin-bottom: 8px;
-}
+.ru { font-size:30px;color:#334155;font-family:‘JetBrains Mono’,monospace;margin-bottom:8px; }
 
-.chips { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; margin-bottom: 16px; }
+.chips { display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px; }
 .chip {
-background: rgba(2,8,23,0.8);
-border: 1px solid rgba(255,255,255,0.07);
-border-radius: 11px; padding: 11px 6px; text-align: center;
+background:rgba(2,8,23,0.8);border:1px solid rgba(255,255,255,0.07);
+border-radius:11px;padding:11px 6px;text-align:center;
 }
-.chip-val {
-font-size: 18px; font-weight: 500;
-font-family: ‘JetBrains Mono’, monospace;
-color: #e2e8f0; letter-spacing: -0.02em;
-}
-.chip-lbl {
-font-size: 9px; color: #334155;
-text-transform: uppercase; letter-spacing: 0.09em; margin-top: 4px;
-}
+.cv { font-size:18px;font-weight:500;font-family:‘JetBrains Mono’,monospace;color:#e2e8f0;letter-spacing:-0.02em; }
+.cl { font-size:9px;color:#334155;text-transform:uppercase;letter-spacing:0.09em;margin-top:4px; }
 
-/* ── Status ───────────────────────────────── */
 .pill {
-display: flex; align-items: center; gap: 10px;
-padding: 12px 16px; border-radius: 12px;
-font-size: 13px; font-weight: 600;
-transition: all 0.3s;
+display:flex;align-items:center;gap:10px;
+padding:12px 16px;border-radius:12px;
+font-size:13px;font-weight:600;transition:all 0.3s;
 }
-.pill-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-.pill.ok   { background: rgba(22,163,74,0.12); border: 1px solid rgba(22,163,74,0.3); color: #4ade80; }
-.pill.warn { background: rgba(202,138,4,0.12); border: 1px solid rgba(202,138,4,0.3); color: #facc15; }
-.pill.bad  { background: rgba(220,38,38,0.12); border: 1px solid rgba(220,38,38,0.3); color: #f87171; }
-.pill.err  { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07); color: #475569; }
-.pill.ok .pill-dot   { background: #22c55e; box-shadow: 0 0 8px #22c55e; }
-.pill.warn .pill-dot { background: #eab308; box-shadow: 0 0 8px #eab308; }
-.pill.bad .pill-dot  { background: #ef4444; box-shadow: 0 0 8px #ef4444; }
-.pill.err .pill-dot  { background: #334155; }
+.pd { width:8px;height:8px;border-radius:50%;flex-shrink:0; }
+.ok   { background:rgba(22,163,74,0.12);border:1px solid rgba(22,163,74,0.3);color:#4ade80; }
+.warn { background:rgba(202,138,4,0.12);border:1px solid rgba(202,138,4,0.3);color:#facc15; }
+.bad  { background:rgba(220,38,38,0.12);border:1px solid rgba(220,38,38,0.3);color:#f87171; }
+.err  { background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);color:#475569; }
+.ok .pd   { background:#22c55e;box-shadow:0 0 8px #22c55e; }
+.warn .pd { background:#eab308;box-shadow:0 0 8px #eab308; }
+.bad .pd  { background:#ef4444;box-shadow:0 0 8px #ef4444; }
+.err .pd  { background:#334155; }
 
-/* ── Schéma ───────────────────────────────── */
-.schema-full { margin-bottom: 14px; }
-.schema-head {
-display: flex; justify-content: space-between; align-items: center;
-margin-bottom: 16px;
+.scard { margin-bottom: 14px; }
+.sh { display:flex;justify-content:space-between;align-items:center;margin-bottom:16px; }
+.stag {
+font-size:10px;font-weight:600;font-family:‘JetBrains Mono’,monospace;
+color:#334155;letter-spacing:0.08em;
+background:rgba(2,8,23,0.8);border:1px solid rgba(255,255,255,0.07);
+border-radius:7px;padding:4px 10px;
 }
-.scale-tag {
-font-size: 10px; font-weight: 600;
-font-family: ‘JetBrains Mono’, monospace;
-color: #334155; letter-spacing: 0.08em;
-background: rgba(2,8,23,0.8);
-border: 1px solid rgba(255,255,255,0.07);
-border-radius: 7px; padding: 4px 10px;
-}
-.schema-box {
-background: rgba(2,8,23,0.7);
-border: 1px solid rgba(255,255,255,0.06);
-border-radius: 14px; overflow: hidden;
-}
-.schema-box svg { width: 100%; height: auto; display: block; }
+.sbox { background:rgba(2,8,23,0.7);border:1px solid rgba(255,255,255,0.06);border-radius:14px;overflow:hidden; }
+.sbox svg { width:100%;height:auto;display:block; }
 
-/* ── Footer ───────────────────────────────── */
-.footer { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 4px; }
+.footer { display:flex;gap:10px;flex-wrap:wrap;margin-top:4px; }
 .ftag {
-font-size: 10px; color: #334155;
-font-family: ‘JetBrains Mono’, monospace;
-background: rgba(2,8,23,0.8);
-border: 1px solid rgba(255,255,255,0.06);
-border-radius: 100px; padding: 5px 12px;
+font-size:10px;color:#334155;font-family:‘JetBrains Mono’,monospace;
+background:rgba(2,8,23,0.8);border:1px solid rgba(255,255,255,0.06);
+border-radius:100px;padding:5px 12px;
 }
 </style>
 
@@ -226,103 +157,73 @@ border-radius: 100px; padding: 5px 12px;
 <body>
 
 <div class="bg">
-  <div class="bg-blob bg-blob-1"></div>
-  <div class="bg-blob bg-blob-2"></div>
-  <div class="bg-blob bg-blob-3"></div>
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+  <div class="blob b3"></div>
 </div>
 
 <div class="app">
-
-  <div class="badge"><div class="badge-dot"></div>Ascenseur · Calcul</div>
+  <div class="badge"><div class="bdot"></div>Ascenseur · Calcul</div>
   <h1>Angle d'enroulement</h1>
-  <div class="subtitle">Poulie de traction — Machine en haut</div>
+  <div class="sub">Poulie de traction — Machine en haut</div>
 
-  <div class="grid-2">
-
-```
-<!-- Paramètres -->
-<div class="card">
-  <div class="card-body">
-    <div class="card-title">Paramètres</div>
-    <div class="fields">
-      <div class="field">
-        <label class="field-label">Ø Traction</label>
-        <div class="field-row">
-          <input type="number" id="d1" value="650" inputmode="decimal" min="1">
-          <span class="field-unit">mm</span>
+  <div class="grid2">
+    <div class="card">
+      <div class="cb">
+        <div class="ct">Paramètres</div>
+        <div class="fields">
+          <div class="field">
+            <label class="fl">Ø Traction</label>
+            <div class="fr"><input type="number" id="d1" value="650" inputmode="decimal" min="1"><span class="fu">mm</span></div>
+          </div>
+          <div class="field">
+            <label class="fl">Ø Déflexion</label>
+            <div class="fr"><input type="number" id="d2" value="450" inputmode="decimal" min="0"><span class="fu">mm</span></div>
+            <div class="fh">0 = sans déflexion</div>
+          </div>
+          <div class="field">
+            <label class="fl">Entre nappe CF</label>
+            <div class="fr"><input type="number" id="cf" value="1300" inputmode="decimal" min="1"><span class="fu">mm</span></div>
+            <div class="fh">brin à brin</div>
+          </div>
+          <div class="field">
+            <label class="fl">Hauteur H</label>
+            <div class="fr"><input type="number" id="h" value="900" inputmode="decimal" min="0"><span class="fu">mm</span></div>
+            <div class="fh">axe à axe vertical</div>
+          </div>
         </div>
-      </div>
-      <div class="field">
-        <label class="field-label">Ø Déflexion</label>
-        <div class="field-row">
-          <input type="number" id="d2" value="450" inputmode="decimal" min="0">
-          <span class="field-unit">mm</span>
-        </div>
-        <div class="field-hint">0 = sans déflexion</div>
-      </div>
-      <div class="field">
-        <label class="field-label">Entre nappe CF</label>
-        <div class="field-row">
-          <input type="number" id="cf" value="1300" inputmode="decimal" min="1">
-          <span class="field-unit">mm</span>
-        </div>
-        <div class="field-hint">brin à brin</div>
-      </div>
-      <div class="field">
-        <label class="field-label">Hauteur H</label>
-        <div class="field-row">
-          <input type="number" id="h" value="900" inputmode="decimal" min="0">
-          <span class="field-unit">mm</span>
-        </div>
-        <div class="field-hint">axe à axe vertical</div>
       </div>
     </div>
-  </div>
-</div>
 
-<!-- Résultats -->
+```
 <div class="card">
-  <div class="card-body">
-    <div class="card-title">Résultats</div>
-    <div class="result-lbl">Angle d'enroulement</div>
-    <div class="result-row">
-      <div class="result-num" id="angle-val">—</div>
-      <div class="result-unit">°</div>
+  <div class="cb">
+    <div class="ct">Résultats</div>
+    <div class="rl">Angle d'enroulement</div>
+    <div class="rr">
+      <div class="rv" id="angle-val">—</div>
+      <div class="ru">°</div>
     </div>
     <div class="chips">
-      <div class="chip">
-        <div class="chip-val" id="dx-val">—</div>
-        <div class="chip-lbl">Dist. horiz.</div>
-      </div>
-      <div class="chip">
-        <div class="chip-val" id="L-val">—</div>
-        <div class="chip-lbl">Dist. axes</div>
-      </div>
-      <div class="chip">
-        <div class="chip-val" id="frac-val">—</div>
-        <div class="chip-lbl">Fraction</div>
-      </div>
+      <div class="chip"><div class="cv" id="dx-val">—</div><div class="cl">Dist. horiz.</div></div>
+      <div class="chip"><div class="cv" id="L-val">—</div><div class="cl">Dist. axes</div></div>
+      <div class="chip"><div class="cv" id="frac-val">—</div><div class="cl">Fraction</div></div>
     </div>
-    <div class="pill ok" id="pill">
-      <div class="pill-dot"></div>
-      <span id="pill-text">—</span>
-    </div>
+    <div class="pill ok" id="pill"><div class="pd"></div><span id="pill-txt">—</span></div>
   </div>
 </div>
 ```
 
   </div>
 
-  <!-- Schéma -->
-
-  <div class="card schema-full">
-    <div class="card-body">
-      <div class="schema-head">
-        <div class="card-title" style="margin-bottom:0">Schéma géométrique</div>
-        <div class="scale-tag" id="scale-tag">—</div>
+  <div class="card scard">
+    <div class="cb">
+      <div class="sh">
+        <div class="ct" style="margin-bottom:0">Schéma géométrique</div>
+        <div class="stag" id="stag">—</div>
       </div>
-      <div class="schema-box">
-        <svg id="schema" viewBox="0 0 600 340" xmlns="http://www.w3.org/2000/svg"></svg>
+      <div class="sbox">
+        <svg id="schema" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg"></svg>
       </div>
     </div>
   </div>
@@ -332,7 +233,6 @@ border-radius: 100px; padding: 5px 12px;
     <div class="ftag">Machine en haut</div>
     <div class="ftag" id="ftag-cf">—</div>
   </div>
-
 </div>
 
 <script>
@@ -364,94 +264,128 @@ function go() {
   const CF=+document.getElementById('cf').value||0;
   const H =+document.getElementById('h').value ||0;
   document.getElementById('ftag-cf').textContent=`CF = ${CF} mm`;
-  if (!D1||!CF) return err('Paramètres invalides');
+  if (!D1||!CF) return setErr('Paramètres invalides');
   const r=computeAngle(D1,D2,CF,H);
-  if (r.error) return err(r.error);
+  if (r.error) return setErr(r.error);
   const a=r.alpha;
-  set('angle-val', a.toFixed(1));
-  set('dx-val', Math.round(r.dx));
-  set('L-val', r.L>0?Math.round(r.L):'—');
-  set('frac-val', frac(a));
+  setV('angle-val',a.toFixed(1));
+  setV('dx-val',Math.round(r.dx));
+  setV('L-val',r.L>0?Math.round(r.L):'—');
+  setV('frac-val',frac(a));
   const av=document.getElementById('angle-val');
   const p=document.getElementById('pill');
-  if (a>=150) { av.style.color='#22c55e'; p.className='pill ok'; setText(`α = ${a.toFixed(1)}°`); }
-  else if (a>=120) { av.style.color='#eab308'; p.className='pill warn'; setText(`α = ${a.toFixed(1)}° — Vérifier l'adhérence`); }
-  else { av.style.color='#ef4444'; p.className='pill bad'; setText(`α = ${a.toFixed(1)}° — Adhérence insuffisante`); }
+  if (a>=150){av.style.color='#22c55e';p.className='pill ok';setT(`α = ${a.toFixed(1)}°`);}
+  else if(a>=120){av.style.color='#eab308';p.className='pill warn';setT(`α = ${a.toFixed(1)}° — Vérifier l'adhérence`);}
+  else{av.style.color='#ef4444';p.className='pill bad';setT(`α = ${a.toFixed(1)}° — Adhérence insuffisante`);}
   r.direct ? drawDirect(r.R1,r.CF) : drawSchema(r);
 }
 
-function err(msg) {
-  ['angle-val','dx-val','L-val','frac-val'].forEach(id=>set(id,'—'));
+function setErr(msg) {
+  ['angle-val','dx-val','L-val','frac-val'].forEach(id=>setV(id,'—'));
   document.getElementById('angle-val').style.color='#334155';
   document.getElementById('pill').className='pill err';
-  setText(msg);
-  document.getElementById('schema').innerHTML=`<text x="300" y="170" text-anchor="middle" fill="#334155" font-size="14" font-family="Inter,sans-serif">${msg}</text>`;
-  set('scale-tag','—');
+  setT(msg);
+  document.getElementById('schema').innerHTML=`<text x="300" y="200" text-anchor="middle" fill="#334155" font-size="14" font-family="Inter,sans-serif">${msg}</text>`;
+  setV('stag','—');
 }
 
-function set(id,v){document.getElementById(id).textContent=v;}
-function setText(t){document.getElementById('pill-text').textContent=t;}
+function setV(id,v){document.getElementById(id).textContent=v;}
+function setT(t){document.getElementById('pill-txt').textContent=t;}
+
 function frac(a) {
   const v=a/360;
-  for (const [f,s] of [[1/6,'1/6'],[1/4,'1/4'],[1/3,'1/3'],[1/2,'1/2'],[2/3,'2/3'],[3/4,'3/4'],[5/6,'5/6'],[1,'1/1']])
+  for(const[f,s]of[[1/6,'1/6'],[1/4,'1/4'],[1/3,'1/3'],[1/2,'1/2'],[2/3,'2/3'],[3/4,'3/4'],[5/6,'5/6'],[1,'1/1']])
     if(Math.abs(v-f)<0.015) return s;
   return v.toFixed(2);
 }
 
-function scaleFit(realW, realH, svgW, svgH, mLeft, mRight, mTop, mBot) {
-  const aw=svgW-mLeft-mRight, ah=svgH-mTop-mBot;
-  return Math.min(aw/realW, ah/realH);
-}
+function drawDirect(R1,CF) {
+  // Système : T1 centré, brin gauche et droit, arc bas
+  const mL=40,mR=40,mT=44,mB=50;
+  const W=600;
+  const maxR=Math.min(120,(W-mL-mR)/2);
+  const sc=maxR/R1;
+  const r=R1*sc;
+  const cx=W/2, cy=mT+r;
+  const botBrin=cy+r+55;
+  const H=botBrin+mB;
 
-function drawDirect(R1, CF) {
-  const W=600, H=300;
-  const sc=Math.min(110,(W-140)/2)/R1;
-  const r=R1*sc, cx=W/2, cy=50+r, bot=cy+r+55;
-  set('scale-tag',`1 : ${Math.round(1/sc)}`);
-  document.getElementById('schema').setAttribute('viewBox',`0 0 ${W} ${H}`);
-  document.getElementById('schema').innerHTML=`
+  setV('stag',`1 : ${Math.round(1/sc)}`);
+  const svg=document.getElementById('schema');
+  svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
+
+  const bx1=cx-r, bx2=cx+r;
+
+  svg.innerHTML=`
   <defs>
     <marker id="a" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#eab308"/></marker>
-    <radialGradient id="g1" cx="35%" cy="30%"><stop offset="0%" stop-color="#1d4ed8" stop-opacity=".25"/><stop offset="100%" stop-color="#1d4ed8" stop-opacity=".04"/></radialGradient>
+    <radialGradient id="g1" cx="35%" cy="30%"><stop offset="0%" stop-color="#1d4ed8" stop-opacity=".22"/><stop offset="100%" stop-color="#1d4ed8" stop-opacity=".04"/></radialGradient>
   </defs>
   <circle cx="${cx}" cy="${cy}" r="${r}" fill="url(#g1)" stroke="#3b82f6" stroke-width="2.5"/>
-  <circle cx="${cx}" cy="${cy}" r="4" fill="#3b82f6"/>
-  <path d="M${cx-r} ${cy} A${r} ${r} 0 0 1 ${cx+r} ${cy}" fill="none" stroke="#ef4444" stroke-width="4.5" stroke-linecap="round"/>
-  <line x1="${cx-r}" y1="${bot}" x2="${cx-r}" y2="${cy}" stroke="#eab308" stroke-width="2.5" stroke-dasharray="8,5"/>
-  <polygon points="${cx-r},${cy-r-1} ${cx-r-6},${cy-r+11} ${cx-r+6},${cy-r+11}" fill="#eab308"/>
-  <line x1="${cx+r}" y1="${cy}" x2="${cx+r}" y2="${bot}" stroke="#eab308" stroke-width="2.5" stroke-dasharray="8,5" marker-end="url(#a)"/>
+  <circle cx="${cx}" cy="${cy}" r="5" fill="#3b82f6"/>
+  <path d="M${bx1} ${cy} A${r} ${r} 0 0 1 ${bx2} ${cy}" fill="none" stroke="#ef4444" stroke-width="5" stroke-linecap="round"/>
+  <line x1="${bx1}" y1="${botBrin}" x2="${bx1}" y2="${cy}" stroke="#eab308" stroke-width="2.5" stroke-dasharray="8,5"/>
+  <polygon points="${bx1},${mT-2} ${bx1-6},${mT+10} ${bx1+6},${mT+10}" fill="#eab308"/>
+  <line x1="${bx2}" y1="${cy}" x2="${bx2}" y2="${botBrin}" stroke="#eab308" stroke-width="2.5" stroke-dasharray="8,5" marker-end="url(#a)"/>
   <text x="${cx}" y="${cy-r-15}" text-anchor="middle" fill="#60a5fa" font-size="12" font-family="Inter,sans-serif" font-weight="600">TRACTION Ø${Math.round(R1*2)} mm</text>
-  <text x="${cx+r+12}" y="${cy+8}" fill="#f87171" font-size="15" font-family="'JetBrains Mono',monospace" font-weight="600">α = 180°</text>
-  <line x1="${cx-r}" y1="${bot+13}" x2="${cx+r}" y2="${bot+13}" stroke="#1e293b" stroke-width="2"/>
-  <line x1="${cx-r}" y1="${bot+9}" x2="${cx-r}" y2="${bot+17}" stroke="#1e293b" stroke-width="2"/>
-  <line x1="${cx+r}" y1="${bot+9}" x2="${cx+r}" y2="${bot+17}" stroke="#1e293b" stroke-width="2"/>
-  <text x="${cx}" y="${bot+30}" text-anchor="middle" fill="#475569" font-size="11" font-family="'JetBrains Mono',monospace">CF = ${Math.round(R1*2)} mm</text>`;
+  <text x="${cx+r+14}" y="${cy+8}" fill="#f87171" font-size="15" font-family="'JetBrains Mono',monospace" font-weight="600">α = 180°</text>
+  <line x1="${bx1}" y1="${botBrin+13}" x2="${bx2}" y2="${botBrin+13}" stroke="#1e293b" stroke-width="2"/>
+  <line x1="${bx1}" y1="${botBrin+9}" x2="${bx1}" y2="${botBrin+17}" stroke="#1e293b" stroke-width="2"/>
+  <line x1="${bx2}" y1="${botBrin+9}" x2="${bx2}" y2="${botBrin+17}" stroke="#1e293b" stroke-width="2"/>
+  <text x="${cx}" y="${botBrin+31}" text-anchor="middle" fill="#475569" font-size="11" font-family="'JetBrains Mono',monospace">CF = ${Math.round(R1*2)} mm</text>`;
 }
 
 function drawSchema(p) {
-  const W=600, mL=36, mR=36, mT=40, mB=50;
-  // Système réel
-  const realW=p.CF; // dx+R1+R2
-  const realH=p.dy+p.R1+p.R2;
-  const sc=scaleFit(realW, realH, W, 1000, mL, mR, mT, mB);
-  const H=Math.min(560, realH*sc+mT+mB+10);
-  set('scale-tag',`1 : ${Math.round(1/sc)}`);
-  document.getElementById('schema').setAttribute('viewBox',`0 0 ${W} ${H}`);
+  // Coords math (y vers le haut) :
+  // T1 centre = (0,0)
+  // T2 centre = (p.dx, -p.dy)
+  // Brin gauche x = -R1
+  // Brin droit x = p.dx + R2
+  //
+  // Bornes du système COMPLET (avec brins qui descendent au même niveau) :
+  // On fait descendre les deux brins jusqu'au même niveau bas = -p.dy - p.R2 - 30mm extra
+  const extraBrin = 40; // mm en dessous de T2
+  const xMin = -p.R1;
+  const xMax = p.dx + p.R2;
+  const yMax = p.R1;                    // sommet T1
+  const yMin = -p.dy - p.R2 - extraBrin; // bas des brins
 
-  // Conversion mm → SVG
-  const sx=(xm)=>mL+(xm+p.R1)*sc;
-  const sy=(ym)=>mT+(-ym+p.R1)*sc;
+  const realW = xMax - xMin;  // = CF
+  const realH = yMax - yMin;
+
+  const mL=40, mR=40, mT=48, mB=44;
+  const W=600;
+  const sc = (W-mL-mR)/realW;
+  const H = realH*sc + mT + mB;
+
+  setV('stag',`1 : ${Math.round(1/sc)}`);
+  const svg=document.getElementById('schema');
+  svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
+
+  // Conversion coords math → SVG
+  // x_svg = mL + (xm - xMin)*sc
+  // y_svg = mT + (yMax - ym)*sc  [inversion y]
+  const sx = xm => mL + (xm - xMin)*sc;
+  const sy = ym => mT + (yMax - ym)*sc;
 
   const c1x=sx(0), c1y=sy(0);
   const c2x=sx(p.dx), c2y=sy(-p.dy);
   const r1=p.R1*sc, r2=p.R2*sc;
+
+  // Points de tangence
   const t1x=sx(p.P1x), t1y=sy(p.P1y);
   const t2x=sx(p.P2x), t2y=sy(p.P2y);
-  const bx1=mL, bx2=mL+p.CF*sc;
-  const topY=mT-22, botY=Math.max(c2y+r2, c1y+r1)+30;
+
+  // Brins
+  const bx1=sx(-p.R1);   // brin gauche (tangente gauche T1)
+  const bx2=sx(p.dx+p.R2); // brin droit (tangente droite T2)
+  const botY=sy(yMin);   // bas des deux brins (même niveau)
+  const topY=mT-22;      // haut du brin entrant (flèche)
+
+  // Arc : de 180° (gauche de T1) à t1, sens horaire SVG (sweep=1)
   const la=p.alpha>180?1:0;
 
-  document.getElementById('schema').innerHTML=`
+  svg.innerHTML=`
   <defs>
     <marker id="a" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#eab308"/></marker>
     <radialGradient id="g1" cx="35%" cy="30%"><stop offset="0%" stop-color="#1d4ed8" stop-opacity=".2"/><stop offset="100%" stop-color="#1d4ed8" stop-opacity=".03"/></radialGradient>
@@ -468,30 +402,32 @@ function drawSchema(p) {
   <!-- Axe à axe -->
   <line x1="${c1x}" y1="${c1y}" x2="${c2x}" y2="${c2y}" stroke="#1e293b" stroke-width="1.5" stroke-dasharray="6,5"/>
 
-  <!-- Brin gauche (monte) -->
+  <!-- Brin gauche (monte par le bas) -->
   <line x1="${bx1}" y1="${botY}" x2="${bx1}" y2="${c1y}" stroke="#eab308" stroke-width="2.5" stroke-dasharray="8,5"/>
   <polygon points="${bx1},${topY+9} ${bx1-6},${topY+20} ${bx1+6},${topY+20}" fill="#eab308"/>
 
-  <!-- Arc enroulement -->
+  <!-- Arc enroulement sur T1 -->
   <path d="M${c1x-r1} ${c1y} A${r1} ${r1} 0 ${la} 1 ${t1x} ${t1y}"
         fill="none" stroke="#ef4444" stroke-width="5" stroke-linecap="round" filter="url(#glow)"/>
 
-  <!-- Tangente -->
+  <!-- Tangente T1→T2 -->
   <line x1="${t1x}" y1="${t1y}" x2="${t2x}" y2="${t2y}" stroke="#eab308" stroke-width="2.5"/>
 
-  <!-- Brin droit (descend) -->
+  <!-- Brin droit (descend depuis T2) -->
   <line x1="${bx2}" y1="${c2y}" x2="${bx2}" y2="${botY}" stroke="#eab308" stroke-width="2.5" stroke-dasharray="8,5" marker-end="url(#a)"/>
 
-  <!-- Labels -->
-  <text x="${c1x}" y="${c1y-r1-16}" text-anchor="middle" fill="#60a5fa" font-size="12" font-family="Inter,sans-serif" font-weight="600">TRACTION Ø${Math.round(p.R1*2)} mm</text>
+  <!-- Labels poulies -->
+  <text x="${c1x}" y="${c1y-r1-14}" text-anchor="middle" fill="#60a5fa" font-size="12" font-family="Inter,sans-serif" font-weight="600">TRACTION Ø${Math.round(p.R1*2)} mm</text>
   <text x="${c2x}" y="${c2y-r2-10}" text-anchor="middle" fill="#2dd4bf" font-size="12" font-family="Inter,sans-serif" font-weight="600">DÉFL. Ø${Math.round(p.R2*2)} mm</text>
+
+  <!-- Angle alpha -->
   <text x="${c1x+10}" y="${c1y+22}" fill="#f87171" font-size="14" font-family="'JetBrains Mono',monospace" font-weight="600">α = ${p.alpha.toFixed(1)}°</text>
 
-  <!-- CF -->
+  <!-- CF nappe -->
   <line x1="${bx1}" y1="${botY+14}" x2="${bx2}" y2="${botY+14}" stroke="#1e293b" stroke-width="2"/>
   <line x1="${bx1}" y1="${botY+10}" x2="${bx1}" y2="${botY+18}" stroke="#1e293b" stroke-width="2"/>
   <line x1="${bx2}" y1="${botY+10}" x2="${bx2}" y2="${botY+18}" stroke="#1e293b" stroke-width="2"/>
-  <text x="${(bx1+bx2)/2}" y="${botY+32}" text-anchor="middle" fill="#475569" font-size="11" font-family="'JetBrains Mono',monospace">CF = ${Math.round(p.CF)} mm</text>`;
+  <text x="${(bx1+bx2)/2}" y="${botY+31}" text-anchor="middle" fill="#475569" font-size="11" font-family="'JetBrains Mono',monospace">CF = ${Math.round(p.CF)} mm</text>`;
 }
 
 go();
