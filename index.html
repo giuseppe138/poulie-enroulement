@@ -3,461 +3,331 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="theme-color" content="#080c14">
-<title>Angle d'enroulement</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<title>Angle enroulement</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html{background:#080c14;}
-body{font-family:'Inter',-apple-system,sans-serif;background:#080c14;color:#e2e8f0;min-height:100vh;-webkit-font-smoothing:antialiased;}
-.bg{position:fixed;inset:0;z-index:0;overflow:hidden;background:#080c14;}
-.blob{position:absolute;border-radius:50%;filter:blur(90px);opacity:.22;animation:bm 18s ease-in-out infinite alternate;}
-.b1{width:600px;height:600px;top:-200px;left:-150px;background:radial-gradient(circle,#1d4ed8,transparent 70%);animation-duration:18s;}
-.b2{width:500px;height:500px;top:-100px;right:-100px;background:radial-gradient(circle,#4f46e5,transparent 70%);animation-duration:14s;animation-direction:alternate-reverse;}
-.b3{width:400px;height:400px;bottom:10%;left:30%;background:radial-gradient(circle,#0f766e,transparent 70%);animation-duration:20s;}
-@keyframes bm{0%{transform:translate(0,0) scale(1)}50%{transform:translate(40px,30px) scale(1.1)}100%{transform:translate(-20px,50px) scale(.95)}}
-.app{position:relative;z-index:1;max-width:1000px;margin:0 auto;padding:40px 18px 80px;}
-h1{font-size:clamp(28px,6vw,50px);font-weight:800;letter-spacing:-.03em;line-height:1.05;color:#fff;margin-bottom:6px;}
-.sub{font-size:15px;color:#64748b;margin-bottom:36px;}
-.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;margin-bottom:14px;}
-.card{background:rgba(15,23,42,.92);border:1px solid rgba(255,255,255,.07);border-radius:20px;overflow:hidden;position:relative;}
-.card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent 10%,rgba(255,255,255,.1) 50%,transparent 90%);}
-.cb{padding:22px;}
-.ct{font-size:10px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#334155;margin-bottom:18px;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Inter',sans-serif;background:#080c14;color:#e2e8f0;min-height:100vh;padding:32px 16px 60px;}
+.bg{position:fixed;inset:0;z-index:0;background:#080c14;}
+.bg::before{content:'';position:absolute;width:500px;height:500px;top:-150px;left:-100px;background:radial-gradient(circle,#1d4ed8,transparent 70%);filter:blur(80px);opacity:.25;}
+.bg::after{content:'';position:absolute;width:400px;height:400px;top:-100px;right:-100px;background:radial-gradient(circle,#4f46e5,transparent 70%);filter:blur(80px);opacity:.2;}
+.wrap{position:relative;z-index:1;max-width:600px;margin:0 auto;}
+h1{font-size:32px;font-weight:800;letter-spacing:-.03em;color:#fff;margin-bottom:4px;}
+.sub{font-size:14px;color:#64748b;margin-bottom:28px;}
+.card{background:#0f172a;border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:20px;margin-bottom:14px;}
+.card-title{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#334155;margin-bottom:16px;}
 .fields{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
-.field{background:rgba(2,8,23,.8);border:1px solid rgba(255,255,255,.07);border-radius:13px;padding:14px 14px 10px;transition:border-color .2s;cursor:text;}
-.field:focus-within{border-color:rgba(59,130,246,.6);}
-.fl{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#334155;margin-bottom:7px;display:block;}
-.fr{display:flex;align-items:baseline;gap:5px;}
-.field input{background:transparent;border:none;outline:none;font-size:28px;font-weight:500;font-family:'JetBrains Mono',monospace;color:#f1f5f9;width:100%;-webkit-appearance:none;letter-spacing:-.02em;}
-.fu{font-size:13px;color:#334155;font-family:'JetBrains Mono',monospace;}
-.fh{font-size:9px;color:#334155;margin-top:4px;letter-spacing:.05em;}
-.fhd{font-size:9px;color:#475569;margin-top:4px;letter-spacing:.05em;transition:color .2s;}
-.rl{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#334155;margin-bottom:8px;}
-.rr{display:flex;align-items:flex-end;gap:5px;margin-bottom:20px;}
-.rv{font-family:'JetBrains Mono',monospace;font-size:clamp(52px,9vw,76px);font-weight:600;line-height:1;letter-spacing:-.04em;transition:color .4s;color:#22c55e;}
-.ru{font-size:30px;color:#334155;font-family:'JetBrains Mono',monospace;margin-bottom:8px;}
-.chips{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px;}
-.chip{background:rgba(2,8,23,.8);border:1px solid rgba(255,255,255,.07);border-radius:11px;padding:11px 6px;text-align:center;}
-.cv{font-size:18px;font-weight:500;font-family:'JetBrains Mono',monospace;color:#e2e8f0;letter-spacing:-.02em;}
-.cl{font-size:9px;color:#334155;text-transform:uppercase;letter-spacing:.09em;margin-top:4px;}
-.pill{display:flex;align-items:center;gap:10px;padding:12px 16px;border-radius:12px;font-size:13px;font-weight:600;transition:all .3s;margin-bottom:14px;}
-.pd{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.field{background:#020817;border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:12px 12px 8px;}
+.field:focus-within{border-color:rgba(59,130,246,.5);}
+.field label{display:block;font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#334155;margin-bottom:5px;}
+.field-row{display:flex;align-items:baseline;gap:4px;}
+.field input{background:transparent;border:none;outline:none;font-size:26px;font-weight:500;font-family:'JetBrains Mono',monospace;color:#f1f5f9;width:100%;-webkit-appearance:none;}
+.unit{font-size:12px;color:#334155;font-family:'JetBrains Mono',monospace;}
+.hint{font-size:9px;margin-top:3px;}
+.result-label{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#334155;margin-bottom:6px;}
+.result-big{display:flex;align-items:flex-end;gap:5px;margin-bottom:18px;}
+.result-num{font-family:'JetBrains Mono',monospace;font-size:72px;font-weight:600;line-height:1;letter-spacing:-.04em;color:#22c55e;transition:color .3s;}
+.result-deg{font-size:32px;color:#334155;font-family:'JetBrains Mono',monospace;margin-bottom:8px;}
+.chips{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px;}
+.chip{background:#020817;border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:10px 6px;text-align:center;}
+.chip-val{font-size:17px;font-weight:500;font-family:'JetBrains Mono',monospace;color:#e2e8f0;}
+.chip-lbl{font-size:9px;color:#334155;text-transform:uppercase;letter-spacing:.08em;margin-top:3px;}
+.status{display:flex;align-items:center;gap:8px;padding:11px 14px;border-radius:10px;font-size:13px;font-weight:600;}
+.status-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
 .ok{background:rgba(22,163,74,.12);border:1px solid rgba(22,163,74,.3);color:#4ade80;}
+.ok .status-dot{background:#22c55e;box-shadow:0 0 6px #22c55e;}
 .warn{background:rgba(202,138,4,.12);border:1px solid rgba(202,138,4,.3);color:#facc15;}
+.warn .status-dot{background:#eab308;box-shadow:0 0 6px #eab308;}
 .bad{background:rgba(220,38,38,.12);border:1px solid rgba(220,38,38,.3);color:#f87171;}
-.ok .pd{background:#22c55e;box-shadow:0 0 8px #22c55e;}
-.warn .pd{background:#eab308;box-shadow:0 0 8px #eab308;}
-.bad .pd{background:#ef4444;box-shadow:0 0 8px #ef4444;}
-.actions{display:flex;gap:8px;flex-wrap:wrap;}
-.btn{display:inline-flex;align-items:center;gap:6px;padding:10px 14px;border-radius:10px;border:none;cursor:pointer;font-size:11px;font-weight:700;font-family:'Inter',sans-serif;letter-spacing:.06em;text-transform:uppercase;transition:all .2s;}
-.b-save{background:rgba(59,130,246,.15);border:1px solid rgba(59,130,246,.3);color:#60a5fa;}
-.b-copy{background:rgba(20,184,166,.12);border:1px solid rgba(20,184,166,.3);color:#2dd4bf;}
-.b-pdf{background:rgba(148,163,184,.1);border:1px solid rgba(148,163,184,.2);color:#94a3b8;}
-.b-rst{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);color:#475569;}
-.toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(20px);background:#1e293b;border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:10px 20px;font-size:13px;color:#e2e8f0;font-weight:500;opacity:0;transition:all .3s;z-index:1000;white-space:nowrap;box-shadow:0 8px 32px rgba(0,0,0,.5);}
-.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
-.scard{margin-bottom:14px;}
-.sh{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;}
-.stag{font-size:10px;font-weight:600;font-family:'JetBrains Mono',monospace;color:#334155;letter-spacing:.08em;background:rgba(2,8,23,.8);border:1px solid rgba(255,255,255,.07);border-radius:7px;padding:4px 10px;}
-.sbox{background:rgba(2,8,23,.7);border:1px solid rgba(255,255,255,.06);border-radius:14px;overflow:hidden;}
+.bad .status-dot{background:#ef4444;box-shadow:0 0 6px #ef4444;}
+.sbox{background:#020817;border:1px solid rgba(255,255,255,.06);border-radius:12px;overflow:hidden;}
 .sbox svg{width:100%;height:auto;display:block;}
-.hcard{margin-bottom:14px;}
-.hlist{display:flex;flex-direction:column;gap:8px;}
-.hitem{display:flex;align-items:center;justify-content:space-between;background:rgba(2,8,23,.8);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:12px 14px;transition:border-color .2s;}
-.hitem:hover{border-color:rgba(59,130,246,.4);}
-.hload{flex:1;cursor:pointer;background:none;border:none;text-align:left;color:inherit;padding:0;}
-.hdel{background:none;border:none;color:#334155;cursor:pointer;font-size:18px;padding:0 4px;line-height:1;transition:color .2s;}
-.hdel:hover{color:#ef4444;}
-.hparams{font-size:11px;color:#64748b;font-family:'JetBrains Mono',monospace;}
-.htime{font-size:10px;color:#334155;margin-top:2px;}
-.hangle{font-size:18px;font-weight:600;font-family:'JetBrains Mono',monospace;}
-.hempty{font-size:12px;color:#334155;text-align:center;padding:20px;}
-.footer{display:flex;gap:10px;flex-wrap:wrap;margin-top:4px;}
-.ftag{font-size:10px;color:#334155;font-family:'JetBrains Mono',monospace;background:rgba(2,8,23,.8);border:1px solid rgba(255,255,255,.06);border-radius:100px;padding:5px 12px;}
+.schema-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;}
+.scale{font-size:10px;font-weight:600;font-family:'JetBrains Mono',monospace;color:#334155;background:#020817;border:1px solid rgba(255,255,255,.07);border-radius:6px;padding:3px 9px;}
+.footer{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px;}
+.ftag{font-size:10px;color:#334155;font-family:'JetBrains Mono',monospace;background:#020817;border:1px solid rgba(255,255,255,.06);border-radius:100px;padding:4px 11px;}
 </style>
 </head>
 <body>
-<div class="bg"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div>
-<div class="toast" id="toast"></div>
-<div class="app">
+<div class="bg"></div>
+<div class="wrap">
   <h1>Angle d'enroulement</h1>
   <div class="sub">Poulie de traction &mdash; Machine en haut</div>
-  <div class="grid2">
-    <div class="card"><div class="cb">
-      <div class="ct">Param&egrave;tres</div>
-      <div class="fields">
-        <div class="field">
-          <label class="fl">&Oslash; Traction</label>
-          <div class="fr"><input type="number" id="d1" value="650" inputmode="decimal" min="1"><span class="fu">mm</span></div>
-        </div>
-        <div class="field">
-          <label class="fl">&Oslash; D&eacute;flexion</label>
-          <div class="fr"><input type="number" id="d2" value="450" inputmode="decimal" min="0"><span class="fu">mm</span></div>
-          <div class="fh">0 = sans d&eacute;flexion</div>
-        </div>
-        <div class="field">
-          <label class="fl">Entre nappe CF</label>
-          <div class="fr"><input type="number" id="cf" value="1300" inputmode="decimal" min="1"><span class="fu">mm</span></div>
-          <div class="fhd" id="cf-hint">brin &agrave; brin</div>
-        </div>
-        <div class="field">
-          <label class="fl">Hauteur H</label>
-          <div class="fr"><input type="number" id="h" value="900" inputmode="decimal" min="0"><span class="fu">mm</span></div>
-          <div class="fh">axe &agrave; axe vertical</div>
+
+  <div class="card">
+    <div class="card-title">Parametres</div>
+    <div class="fields">
+      <div class="field">
+        <label>O Traction</label>
+        <div class="field-row">
+          <input type="number" id="d1" value="650" min="1">
+          <span class="unit">mm</span>
         </div>
       </div>
-    </div></div>
-    <div class="card"><div class="cb">
-      <div class="ct">R&eacute;sultats</div>
-      <div class="rl">Angle d'enroulement</div>
-      <div class="rr"><div class="rv" id="angle-val">&mdash;</div><div class="ru">&deg;</div></div>
-      <div class="chips">
-        <div class="chip"><div class="cv" id="dx-val">&mdash;</div><div class="cl">Dist. horiz.</div></div>
-        <div class="chip"><div class="cv" id="L-val">&mdash;</div><div class="cl">Dist. axes</div></div>
-        <div class="chip"><div class="cv" id="frac-val">&mdash;</div><div class="cl">Fraction</div></div>
+      <div class="field">
+        <label>O Deflexion</label>
+        <div class="field-row">
+          <input type="number" id="d2" value="450" min="0">
+          <span class="unit">mm</span>
+        </div>
+        <div class="hint" style="color:#334155">0 = sans deflexion</div>
       </div>
-      <div class="pill ok" id="pill"><div class="pd"></div><span id="pill-txt">&mdash;</span></div>
-      <div class="actions">
-        <button class="btn b-save" onclick="saveHist()">Sauvegarder</button>
-        <button class="btn b-copy" onclick="copyRes()">Copier</button>
-        <button class="btn b-pdf" onclick="doPrint()">Imprimer</button>
-        <button class="btn b-rst" onclick="doReset()">Reset</button>
+      <div class="field">
+        <label>Entre nappe CF</label>
+        <div class="field-row">
+          <input type="number" id="cf" value="1300" min="1">
+          <span class="unit">mm</span>
+        </div>
+        <div class="hint" id="cf-hint" style="color:#475569">brin a brin</div>
       </div>
-    </div></div>
-  </div>
-  <div class="card scard"><div class="cb">
-    <div class="sh">
-      <div class="ct" style="margin-bottom:0">Sch&eacute;ma g&eacute;om&eacute;trique</div>
-      <div class="stag" id="stag">&mdash;</div>
+      <div class="field">
+        <label>Hauteur H</label>
+        <div class="field-row">
+          <input type="number" id="h" value="900" min="0">
+          <span class="unit">mm</span>
+        </div>
+        <div class="hint" style="color:#334155">axe a axe vertical</div>
+      </div>
     </div>
-    <div class="sbox"><svg id="schema" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
-      <text x="300" y="200" text-anchor="middle" fill="#334155" font-size="14" font-family="Inter,sans-serif">Entrez les param&egrave;tres</text>
-    </svg></div>
-  </div></div>
-  <div class="card hcard"><div class="cb">
-    <div class="ct">Historique</div>
-    <div class="hlist" id="hlist"><div class="hempty">Aucun calcul sauvegard&eacute;</div></div>
-  </div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Resultats</div>
+    <div class="result-label">Angle d'enroulement</div>
+    <div class="result-big">
+      <div class="result-num" id="rnum">-</div>
+      <div class="result-deg">deg</div>
+    </div>
+    <div class="chips">
+      <div class="chip"><div class="chip-val" id="rdx">-</div><div class="chip-lbl">Dist horiz</div></div>
+      <div class="chip"><div class="chip-val" id="rL">-</div><div class="chip-lbl">Dist axes</div></div>
+      <div class="chip"><div class="chip-val" id="rfr">-</div><div class="chip-lbl">Fraction</div></div>
+    </div>
+    <div class="status ok" id="status">
+      <div class="status-dot"></div>
+      <span id="status-txt">-</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="schema-head">
+      <div class="card-title" style="margin-bottom:0">Schema</div>
+      <div class="scale" id="scale">-</div>
+    </div>
+    <div class="sbox">
+      <svg id="svg" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
+        <text x="300" y="200" text-anchor="middle" fill="#334155" font-size="14" font-family="Inter,sans-serif">Entrez les parametres</text>
+      </svg>
+    </div>
+  </div>
+
   <div class="footer">
-    <div class="ftag">Sch&eacute;ma &agrave; l'&eacute;chelle</div>
+    <div class="ftag">Schema a l'echelle</div>
     <div class="ftag">Machine en haut</div>
-    <div class="ftag" id="ftag-cf">&mdash;</div>
+    <div class="ftag" id="ftag">-</div>
   </div>
 </div>
-<script>
-var LR = null;
-var HS = JSON.parse(localStorage.getItem('ph') || '[]');
 
-function calc(D1, D2, CF, H) {
-var R1 = D1/2, R2 = D2/2, dx = CF-R1-R2, dy = H;
-if (CF < D1) return {err: ‘CF (’ + Math.round(CF) + ‘mm) inferieur a D traction (’ + Math.round(D1) + ‘mm)’};
-if (dx < 0)  return {err: ‘CF minimum = ’ + Math.round(R1+R2) + ’ mm’};
-if (!D2 || (dx===0 && dy===0)) return {alpha:180,dx:0,L:0,dir:true,R1:R1,R2:R2,CF:CF,D1:D1,D2:D2,H:H};
-var L = Math.sqrt(dx*dx + dy*dy);
-if (L < R1+R2) return {err: ‘IMPOSSIBLE - Poulies superposees’};
-var A=dx, B=-dy, C=R1-R2, Lv=Math.sqrt(A*A+B*B);
-if (Math.abs(C/Lv) > 1) return {err: ‘Geometrie impossible’};
-var base = Math.atan2(B,A), delta = Math.acos(C/Lv);
-var cands = [base+delta, base-delta], n = null;
-for (var i=0; i<cands.length; i++) {
-var ni = cands[i];
-if (R1*Math.sin(ni) > -R1*0.3 && dx+R2*Math.cos(ni) > R1*Math.cos(ni)-10) { n=ni; break; }
+<script>
+function getVal(id) { return parseFloat(document.getElementById(id).value) || 0; }
+function setText(id, v) { document.getElementById(id).textContent = v; }
+
+function compute(D1, D2, CF, H) {
+  var R1 = D1 / 2;
+  var R2 = D2 / 2;
+  var dx = CF - R1 - R2;
+  var dy = H;
+  if (CF < D1) return { error: 'CF inferieur au diametre traction' };
+  if (dx < 0)  return { error: 'CF trop petit (min ' + Math.round(R1+R2) + ' mm)' };
+  if (!D2 || (dx === 0 && dy === 0)) return { alpha: 180, dx: 0, L: 0, direct: true, R1: R1, R2: R2, CF: CF, D1: D1, D2: D2, H: H };
+  var L = Math.sqrt(dx*dx + dy*dy);
+  if (L < R1+R2) return { error: 'Poulies superposees - impossible' };
+  var A = dx, B = -dy, C = R1-R2;
+  var Lv = Math.sqrt(A*A + B*B);
+  if (Math.abs(C/Lv) > 1) return { error: 'Geometrie impossible' };
+  var base = Math.atan2(B, A);
+  var delta = Math.acos(C / Lv);
+  var cands = [base + delta, base - delta];
+  var n = null;
+  for (var i = 0; i < cands.length; i++) {
+    var ni = cands[i];
+    if (R1*Math.sin(ni) > -R1*0.3 && dx+R2*Math.cos(ni) > R1*Math.cos(ni)-10) {
+      n = ni; break;
+    }
+  }
+  if (n === null) n = cands[0];
+  var P1x = R1*Math.cos(n), P1y = R1*Math.sin(n);
+  var P2x = dx+R2*Math.cos(n), P2y = -dy+R2*Math.sin(n);
+  var arc = Math.PI - n;
+  if (arc < 0) arc += 2 * Math.PI;
+  return { alpha: arc*180/Math.PI, dx: dx, dy: dy, L: L, R1: R1, R2: R2, CF: CF, D1: D1, D2: D2, H: dy, P1x: P1x, P1y: P1y, P2x: P2x, P2y: P2y };
 }
-if (n===null) n = cands[0];
-var P1x=R1*Math.cos(n), P1y=R1*Math.sin(n);
-var P2x=dx+R2*Math.cos(n), P2y=-dy+R2*Math.sin(n);
-var arc = Math.PI-n;
-if (arc < 0) arc += 2*Math.PI;
-return {alpha:arc*180/Math.PI,dx:dx,dy:dy,L:L,R1:R1,R2:R2,CF:CF,D1:D1,D2:D2,H:dy,n:n,P1x:P1x,P1y:P1y,P2x:P2x,P2y:P2y};
+
+function fracStr(a) {
+  var v = a / 360;
+  var pairs = [[1/6,'1/6'],[1/4,'1/4'],[1/3,'1/3'],[1/2,'1/2'],[2/3,'2/3'],[3/4,'3/4'],[5/6,'5/6'],[1,'1/1']];
+  for (var i = 0; i < pairs.length; i++) {
+    if (Math.abs(v - pairs[i][0]) < 0.015) return pairs[i][1];
+  }
+  return v.toFixed(2);
 }
 
 function go() {
-var D1 = parseFloat(document.getElementById(‘d1’).value) || 0;
-var D2 = parseFloat(document.getElementById(‘d2’).value) || 0;
-var CF = parseFloat(document.getElementById(‘cf’).value) || 0;
-var H  = parseFloat(document.getElementById(‘h’).value)  || 0;
-var hint = document.getElementById(‘cf-hint’);
-if (D1 > 0) {
-hint.textContent = ‘min. ’ + Math.round(D1) + ’ mm’;
-hint.style.color = (CF > 0 && CF < D1) ? ‘#ef4444’ : ‘#475569’;
-} else {
-hint.textContent = ‘brin a brin’;
-hint.style.color = ‘#334155’;
-}
-document.getElementById(‘ftag-cf’).textContent = CF ? ‘CF = ’ + CF + ’ mm’ : ‘-’;
-if (!D1 || !CF) { return err(‘Parametres invalides’); }
-var r = calc(D1, D2, CF, H);
-if (r.err) { return err(r.err); }
-LR = r;
-var a = r.alpha;
-sv(‘angle-val’, a.toFixed(1));
-sv(‘dx-val’, Math.round(r.dx));
-sv(‘L-val’, r.L > 0 ? Math.round(r.L) : ‘-’);
-sv(‘frac-val’, fr(a));
-var av = document.getElementById(‘angle-val’);
-var p  = document.getElementById(‘pill’);
-if (a >= 150) { av.style.color=’#22c55e’; p.className=‘pill ok’;   pt(‘a = ‘+a.toFixed(1)+’ deg’); }
-else if (a >= 120) { av.style.color=’#eab308’; p.className=‘pill warn’; pt(‘a = ‘+a.toFixed(1)+’ deg - Verifier adherence’); }
-else { av.style.color=’#ef4444’; p.className=‘pill bad’; pt(‘a = ‘+a.toFixed(1)+’ deg - Adherence insuffisante’); }
-if (r.dir) { drawD(r.R1, r.CF); } else { drawS(r); }
-}
+  var D1 = getVal('d1');
+  var D2 = getVal('d2');
+  var CF = getVal('cf');
+  var H  = getVal('h');
 
-function err(msg) {
-LR = null;
-sv(‘angle-val’,’-’); sv(‘dx-val’,’-’); sv(‘L-val’,’-’); sv(‘frac-val’,’-’);
-document.getElementById(‘angle-val’).style.color = ‘#334155’;
-document.getElementById(‘pill’).className = ‘pill bad’;
-pt(msg);
-document.getElementById(‘schema’).innerHTML = ‘<text x="300" y="200" text-anchor="middle" fill="#334155" font-size="14" font-family="Inter,sans-serif">’+msg+’</text>’;
-sv(‘stag’,’-’);
-}
+  var hint = document.getElementById('cf-hint');
+  if (D1 > 0) {
+    hint.textContent = 'min. ' + Math.round(D1) + ' mm';
+    hint.style.color = (CF > 0 && CF < D1) ? '#ef4444' : '#475569';
+  }
 
-function sv(id,v) { document.getElementById(id).textContent = v; }
-function pt(t)    { document.getElementById(‘pill-txt’).textContent = t; }
+  document.getElementById('ftag').textContent = CF ? 'CF = ' + CF + ' mm' : '-';
 
-function fr(a) {
-var v = a/360;
-var t = [[1/6,‘1/6’],[1/4,‘1/4’],[1/3,‘1/3’],[1/2,‘1/2’],[2/3,‘2/3’],[3/4,‘3/4’],[5/6,‘5/6’],[1,‘1/1’]];
-for (var i=0; i<t.length; i++) { if (Math.abs(v-t[i][0]) < 0.015) return t[i][1]; }
-return v.toFixed(2);
-}
+  if (!D1 || !CF) {
+    showError('Parametres manquants');
+    return;
+  }
 
-function toast(msg) {
-var t = document.getElementById(‘toast’);
-t.textContent = msg; t.classList.add(‘show’);
-setTimeout(function(){ t.classList.remove(‘show’); }, 2500);
-}
+  var r = compute(D1, D2, CF, H);
 
-function saveHist() {
-if (!LR) { toast(‘Aucun resultat’); return; }
-var e = {ts:Date.now(), D1:Math.round(LR.D1), D2:Math.round(LR.D2), CF:Math.round(LR.CF), H:Math.round(LR.H), a:LR.alpha.toFixed(1)};
-HS = HS.filter(function(x){ return !(x.D1===e.D1&&x.D2===e.D2&&x.CF===e.CF&&x.H===e.H); });
-HS.unshift(e);
-if (HS.length > 5) HS = HS.slice(0,5);
-localStorage.setItem(‘ph’, JSON.stringify(HS));
-renderH(); toast(‘Sauvegarde !’);
+  if (r.error) {
+    showError(r.error);
+    return;
+  }
+
+  var a = r.alpha;
+  var numEl = document.getElementById('rnum');
+  numEl.textContent = a.toFixed(1);
+
+  setText('rdx', Math.round(r.dx));
+  setText('rL', r.L > 0 ? Math.round(r.L) : '-');
+  setText('rfr', fracStr(a));
+
+  var st = document.getElementById('status');
+  var stTxt = document.getElementById('status-txt');
+  if (a >= 150) {
+    numEl.style.color = '#22c55e';
+    st.className = 'status ok';
+    stTxt.textContent = 'a = ' + a.toFixed(1) + ' deg';
+  } else if (a >= 120) {
+    numEl.style.color = '#eab308';
+    st.className = 'status warn';
+    stTxt.textContent = 'a = ' + a.toFixed(1) + ' deg - Verifier adherence';
+  } else {
+    numEl.style.color = '#ef4444';
+    st.className = 'status bad';
+    stTxt.textContent = 'a = ' + a.toFixed(1) + ' deg - Adherence insuffisante';
+  }
+
+  if (r.direct) {
+    drawDirect(r.R1, r.CF);
+  } else {
+    drawSchema(r);
+  }
 }
 
-function delHist(i) { HS.splice(i,1); localStorage.setItem(‘ph’,JSON.stringify(HS)); renderH(); }
-
-function loadHist(i) {
-var e = HS[i];
-document.getElementById(‘d1’).value = e.D1;
-document.getElementById(‘d2’).value = e.D2;
-document.getElementById(‘cf’).value = e.CF;
-document.getElementById(‘h’).value  = e.H;
-go(); toast(‘Configuration chargee’);
+function showError(msg) {
+  setText('rnum', '-');
+  setText('rdx', '-');
+  setText('rL', '-');
+  setText('rfr', '-');
+  document.getElementById('rnum').style.color = '#334155';
+  var st = document.getElementById('status');
+  st.className = 'status bad';
+  document.getElementById('status-txt').textContent = msg;
+  document.getElementById('svg').innerHTML = '<text x="300" y="200" text-anchor="middle" fill="#334155" font-size="14" font-family="Inter,sans-serif">' + msg + '</text>';
+  setText('scale', '-');
 }
 
-function renderH() {
-var el = document.getElementById(‘hlist’);
-if (!HS.length) { el.innerHTML = ‘<div class="hempty">Aucun calcul sauvegarde</div>’; return; }
-var html = ‘’;
-for (var i=0; i<HS.length; i++) {
-var e = HS[i], a = parseFloat(e.a);
-var col = a>=150?’#22c55e’:a>=120?’#eab308’:’#ef4444’;
-var d = new Date(e.ts);
-var dt = d.toLocaleDateString(‘fr-FR’,{day:‘2-digit’,month:‘2-digit’})+’ ‘+d.toLocaleTimeString(‘fr-FR’,{hour:‘2-digit’,minute:‘2-digit’});
-html += ‘<div class="hitem">’;
-html += ‘<button class="hload" onclick="loadHist('+i+')">’;
-html += ‘<div class="hparams">D’+e.D1+’/D’+e.D2+’ CF’+e.CF+‘mm H’+e.H+‘mm</div>’;
-html += ‘<div class="htime">’+dt+’</div>’;
-html += ‘</button>’;
-html += ‘<div style="display:flex;align-items:center;gap:10px;">’;
-html += ‘<div class="hangle" style="color:'+col+'">’+e.a+’</div>’;
-html += ‘<button class="hdel" onclick="delHist('+i+')">x</button>’;
-html += ‘</div></div>’;
-}
-el.innerHTML = html;
-}
-
-function copyRes() {
-if (!LR) { toast(‘Aucun resultat’); return; }
-var r=LR, a=r.alpha;
-var txt = “Angle d’enroulement\n”;
-txt += “D Traction : “+Math.round(r.D1)+” mm\n”;
-txt += “D Deflexion: “+Math.round(r.D2)+” mm\n”;
-txt += “CF         : “+Math.round(r.CF)+” mm\n”;
-txt += “H          : “+Math.round(r.H)+” mm\n”;
-txt += “—\n”;
-txt += “Angle a    : “+a.toFixed(1)+” deg\n”;
-txt += “Fraction   : “+fr(a)+”\n”;
-txt += “Dist horiz : “+Math.round(r.dx)+” mm\n”;
-txt += “Dist axes  : “+(r.L>0?Math.round(r.L):’-’)+” mm”;
-if (navigator.clipboard && navigator.clipboard.writeText) {
-navigator.clipboard.writeText(txt).then(function(){ toast(‘Copie !’); }).catch(function(){ fbCopy(txt); });
-} else { fbCopy(txt); }
+function drawDirect(R1, CF) {
+  var W = 600, mT = 44, mB = 50;
+  var sc = Math.min(110, (W-80)/2) / R1;
+  var r = R1 * sc;
+  var cx = W/2, cy = mT+r, bot = cy+r+55, H = bot+mB;
+  setText('scale', '1 : ' + Math.round(1/sc));
+  var s = document.getElementById('svg');
+  s.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+  var bx1 = cx-r, bx2 = cx+r;
+  var o = '<defs>';
+  o += '<marker id="arr" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#eab308"/></marker>';
+  o += '<radialGradient id="g1" cx="35%" cy="30%"><stop offset="0%" stop-color="#1d4ed8" stop-opacity=".2"/><stop offset="100%" stop-color="#1d4ed8" stop-opacity=".03"/></radialGradient>';
+  o += '</defs>';
+  o += '<path d="M'+cx+' '+cy+' L'+bx1+' '+cy+' A'+r+' '+r+' 0 0 1 '+bx2+' '+cy+' Z" fill="rgba(239,68,68,0.08)"/>';
+  o += '<circle cx="'+cx+'" cy="'+cy+'" r="'+r+'" fill="url(#g1)" stroke="#3b82f6" stroke-width="2.5"/>';
+  o += '<circle cx="'+cx+'" cy="'+cy+'" r="5" fill="#3b82f6"/>';
+  o += '<path d="M'+bx1+' '+cy+' A'+r+' '+r+' 0 0 1 '+bx2+' '+cy+'" fill="none" stroke="#ef4444" stroke-width="5" stroke-linecap="round"/>';
+  o += '<line x1="'+bx1+'" y1="'+bot+'" x2="'+bx1+'" y2="'+cy+'" stroke="#eab308" stroke-width="2.5" stroke-dasharray="8,5"/>';
+  o += '<polygon points="'+bx1+','+(mT-2)+' '+(bx1-6)+','+(mT+10)+' '+(bx1+6)+','+(mT+10)+'" fill="#eab308"/>';
+  o += '<line x1="'+bx2+'" y1="'+cy+'" x2="'+bx2+'" y2="'+bot+'" stroke="#eab308" stroke-width="2.5" stroke-dasharray="8,5" marker-end="url(#arr)"/>';
+  o += '<text x="'+cx+'" y="'+(cy-r-12)+'" text-anchor="middle" fill="#60a5fa" font-size="12" font-family="Inter,sans-serif" font-weight="600">TRACTION D'+Math.round(R1*2)+' mm</text>';
+  o += '<text x="'+cx+'" y="'+(cy+20)+'" text-anchor="middle" fill="#f87171" font-size="14" font-family="JetBrains Mono,monospace" font-weight="600">a = 180 deg</text>';
+  o += '<line x1="'+bx1+'" y1="'+(bot+13)+'" x2="'+bx2+'" y2="'+(bot+13)+'" stroke="#1e293b" stroke-width="2"/>';
+  o += '<line x1="'+bx1+'" y1="'+(bot+9)+'" x2="'+bx1+'" y2="'+(bot+17)+'" stroke="#1e293b" stroke-width="2"/>';
+  o += '<line x1="'+bx2+'" y1="'+(bot+9)+'" x2="'+bx2+'" y2="'+(bot+17)+'" stroke="#1e293b" stroke-width="2"/>';
+  o += '<text x="'+cx+'" y="'+(bot+29)+'" text-anchor="middle" fill="#475569" font-size="11" font-family="JetBrains Mono,monospace">CF = '+Math.round(R1*2)+' mm</text>';
+  s.innerHTML = o;
 }
 
-function fbCopy(txt) {
-var el = document.createElement(‘textarea’);
-el.value = txt; el.style.cssText=‘position:fixed;opacity:0;’;
-document.body.appendChild(el); el.focus(); el.select();
-try { document.execCommand(‘copy’); toast(‘Copie !’); } catch(e){ toast(‘Non supporte’); }
-document.body.removeChild(el);
+function drawSchema(p) {
+  var xMin = -p.R1, xMax = p.dx+p.R2;
+  var yMax = p.R1, yMin = -p.dy-p.R2-40;
+  var mL=44, mR=44, mT=50, mB=46, W=600;
+  var sc = (W-mL-mR) / (xMax-xMin);
+  var H = (yMax-yMin)*sc + mT + mB;
+  setText('scale', '1 : ' + Math.round(1/sc));
+  var s = document.getElementById('svg');
+  s.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+  function sx(x) { return mL + (x-xMin)*sc; }
+  function sy(y) { return mT + (yMax-y)*sc; }
+  var c1x=sx(0), c1y=sy(0), c2x=sx(p.dx), c2y=sy(-p.dy);
+  var r1=p.R1*sc, r2=p.R2*sc;
+  var t1x=sx(p.P1x), t1y=sy(p.P1y), t2x=sx(p.P2x), t2y=sy(p.P2y);
+  var bx1=sx(-p.R1), bx2=sx(p.dx+p.R2);
+  var topY=mT-22, botY=sy(yMin), la=p.alpha>180?1:0;
+  var chx=Math.min(c2x+r2+30, W-30), cfy=botY+14, mhY=(c1y+c2y)/2;
+  var o = '<defs>';
+  o += '<marker id="arr" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#eab308"/></marker>';
+  o += '<marker id="ca1" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#475569"/></marker>';
+  o += '<marker id="ca2" markerWidth="8" markerHeight="6" refX="0" refY="3" orient="auto"><polygon points="8 0,0 3,8 6" fill="#475569"/></marker>';
+  o += '<radialGradient id="g1" cx="35%" cy="30%"><stop offset="0%" stop-color="#1d4ed8" stop-opacity=".2"/><stop offset="100%" stop-color="#1d4ed8" stop-opacity=".03"/></radialGradient>';
+  o += '<radialGradient id="g2" cx="35%" cy="30%"><stop offset="0%" stop-color="#0f766e" stop-opacity=".2"/><stop offset="100%" stop-color="#0f766e" stop-opacity=".03"/></radialGradient>';
+  o += '<filter id="glow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>';
+  o += '</defs>';
+  o += '<path d="M'+c1x+' '+c1y+' L'+(c1x-r1)+' '+c1y+' A'+r1+' '+r1+' 0 '+la+' 1 '+t1x+' '+t1y+' Z" fill="rgba(239,68,68,0.08)"/>';
+  o += '<circle cx="'+c1x+'" cy="'+c1y+'" r="'+r1+'" fill="url(#g1)" stroke="#3b82f6" stroke-width="2.5"/>';
+  o += '<circle cx="'+c1x+'" cy="'+c1y+'" r="5" fill="#3b82f6"/>';
+  o += '<circle cx="'+c2x+'" cy="'+c2y+'" r="'+r2+'" fill="url(#g2)" stroke="#14b8a6" stroke-width="2.5"/>';
+  o += '<circle cx="'+c2x+'" cy="'+c2y+'" r="4" fill="#14b8a6"/>';
+  o += '<line x1="'+c1x+'" y1="'+c1y+'" x2="'+c2x+'" y2="'+c2y+'" stroke="#1e293b" stroke-width="1.5" stroke-dasharray="6,5"/>';
+  o += '<line x1="'+bx1+'" y1="'+botY+'" x2="'+bx1+'" y2="'+c1y+'" stroke="#eab308" stroke-width="2.5" stroke-dasharray="8,5"/>';
+  o += '<polygon points="'+bx1+','+(topY+9)+' '+(bx1-6)+','+(topY+20)+' '+(bx1+6)+','+(topY+20)+'" fill="#eab308"/>';
+  o += '<path d="M'+(c1x-r1)+' '+c1y+' A'+r1+' '+r1+' 0 '+la+' 1 '+t1x+' '+t1y+'" fill="none" stroke="#ef4444" stroke-width="5" stroke-linecap="round" filter="url(#glow)"/>';
+  o += '<line x1="'+t1x+'" y1="'+t1y+'" x2="'+t2x+'" y2="'+t2y+'" stroke="#eab308" stroke-width="2.5"/>';
+  o += '<line x1="'+bx2+'" y1="'+c2y+'" x2="'+bx2+'" y2="'+botY+'" stroke="#eab308" stroke-width="2.5" stroke-dasharray="8,5" marker-end="url(#arr)"/>';
+  o += '<text x="'+c1x+'" y="'+(c1y-r1-12)+'" text-anchor="middle" fill="#60a5fa" font-size="12" font-family="Inter,sans-serif" font-weight="600">TRACTION D'+Math.round(p.R1*2)+' mm</text>';
+  o += '<text x="'+c2x+'" y="'+(c2y-r2-8)+'" text-anchor="middle" fill="#2dd4bf" font-size="12" font-family="Inter,sans-serif" font-weight="600">DEFL. D'+Math.round(p.R2*2)+' mm</text>';
+  o += '<text x="'+(c1x+10)+'" y="'+(c1y+20)+'" fill="#f87171" font-size="14" font-family="JetBrains Mono,monospace" font-weight="600">a = '+p.alpha.toFixed(1)+' deg</text>';
+  o += '<line x1="'+chx+'" y1="'+c1y+'" x2="'+chx+'" y2="'+c2y+'" stroke="#475569" stroke-width="1.5" marker-start="url(#ca2)" marker-end="url(#ca1)"/>';
+  o += '<text x="'+(chx+8)+'" y="'+(mhY+4)+'" fill="#475569" font-size="10" font-family="JetBrains Mono,monospace">H='+Math.round(p.H)+'mm</text>';
+  o += '<line x1="'+bx1+'" y1="'+cfy+'" x2="'+bx2+'" y2="'+cfy+'" stroke="#475569" stroke-width="1.5" marker-start="url(#ca2)" marker-end="url(#ca1)"/>';
+  o += '<line x1="'+bx1+'" y1="'+(cfy-4)+'" x2="'+bx1+'" y2="'+(cfy+4)+'" stroke="#475569" stroke-width="1.5"/>';
+  o += '<line x1="'+bx2+'" y1="'+(cfy-4)+'" x2="'+bx2+'" y2="'+(cfy+4)+'" stroke="#475569" stroke-width="1.5"/>';
+  o += '<text x="'+((bx1+bx2)/2)+'" y="'+(cfy+15)+'" text-anchor="middle" fill="#475569" font-size="10" font-family="JetBrains Mono,monospace">CF = '+Math.round(p.CF)+' mm</text>';
+  s.innerHTML = o;
 }
 
-function doPrint() {
-if (!LR) { toast(‘Aucun resultat’); return; }
-var r=LR, a=r.alpha;
-var col=a>=150?’#16a34a’:a>=120?’#ca8a04’:’#dc2626’;
-var bg=a>=150?’#dcfce7’:a>=120?’#fef9c3’:’#fee2e2’;
-var bd=a>=150?’#86efac’:a>=120?’#fde047’:’#fca5a5’;
-var msg=a>=150?‘Adherence excellente’:a>=120?“Verifier l’adherence”:‘Adherence insuffisante’;
-var svg = document.getElementById(‘schema’).outerHTML;
-var date = new Date().toLocaleDateString(‘fr-FR’,{weekday:‘long’,year:‘numeric’,month:‘long’,day:‘numeric’});
-var w = window.open(’’,’_blank’,‘width=750,height=1000’);
-if (!w) { toast(‘Autorisez les popups’); return; }
-var h=’<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Angle enroulement</title>’;
-h+=’<style>body{font-family:Arial,sans-serif;padding:32px;color:#0f172a;max-width:660px;margin:0 auto;}’;
-h+=‘h1{font-size:24px;font-weight:800;margin-bottom:4px;}’;
-h+=’.sub{font-size:13px;color:#64748b;margin-bottom:4px;}’;
-h+=’.date{font-size:11px;color:#94a3b8;margin-bottom:24px;}’;
-h+=’.st{font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#94a3b8;margin:18px 0 10px;padding-bottom:5px;border-bottom:1px solid #e2e8f0;}’;
-h+=’.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px;}’;
-h+=’.pm{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:10px 12px;}’;
-h+=’.pl{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#94a3b8;margin-bottom:3px;}’;
-h+=’.pv{font-size:22px;font-weight:600;font-family:monospace;}’;
-h+=’.pu{font-size:11px;color:#94a3b8;margin-left:3px;}’;
-h+=’.rb{font-size:56px;font-weight:700;font-family:monospace;letter-spacing:-.04em;color:’+col+’;line-height:1;}’;
-h+=’.ru{font-size:24px;color:#94a3b8;font-family:monospace;}’;
-h+=’.ch{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0;}’;
-h+=’.cp{background:#f8fafc;border:1px solid #e2e8f0;border-radius:7px;padding:8px;text-align:center;}’;
-h+=’.cv{font-size:14px;font-weight:600;font-family:monospace;}’;
-h+=’.cl{font-size:8px;color:#94a3b8;text-transform:uppercase;letter-spacing:.08em;margin-top:2px;}’;
-h+=’.st2{padding:9px 13px;border-radius:7px;font-size:12px;font-weight:600;background:’+bg+’;color:’+col+’;border:1px solid ‘+bd+’;margin-bottom:16px;}’;
-h+=’.sb{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:10px;}’;
-h+=’.sb svg{width:100%;height:auto;}’;
-h+=’@media print{@page{margin:12mm;}body{padding:0;}}</style></head><body>’;
-h+=’<h1>Angle denroulement</h1>’;
-h+=’<div class="sub">Poulie de traction - Machine en haut</div>’;
-h+=’<div class="date">’+date+’</div>’;
-h+=’<div class="st">Parametres</div>’;
-h+=’<div class="grid">’;
-h+=’<div class="pm"><div class="pl">D Traction</div><div class="pv">’+Math.round(r.D1)+’<span class="pu">mm</span></div></div>’;
-h+=’<div class="pm"><div class="pl">D Deflexion</div><div class="pv">’+Math.round(r.D2)+’<span class="pu">mm</span></div></div>’;
-h+=’<div class="pm"><div class="pl">Entre nappe CF</div><div class="pv">’+Math.round(r.CF)+’<span class="pu">mm</span></div></div>’;
-h+=’<div class="pm"><div class="pl">Hauteur H</div><div class="pv">’+Math.round(r.H)+’<span class="pu">mm</span></div></div>’;
-h+=’</div>’;
-h+=’<div class="st">Resultats</div>’;
-h+=’<div style="display:flex;align-items:flex-end;gap:6px;margin-bottom:12px;">’;
-h+=’<div class="rb">’+a.toFixed(1)+’</div><div class="ru">deg</div></div>’;
-h+=’<div class="ch">’;
-h+=’<div class="cp"><div class="cv">’+Math.round(r.dx)+’</div><div class="cl">Dist horiz mm</div></div>’;
-h+=’<div class="cp"><div class="cv">’+(r.L>0?Math.round(r.L):’-’)+’</div><div class="cl">Dist axes mm</div></div>’;
-h+=’<div class="cp"><div class="cv">’+fr(a)+’</div><div class="cl">Fraction</div></div>’;
-h+=’</div>’;
-h+=’<div class="st2">a = ‘+a.toFixed(1)+’ deg - ‘+msg+’</div>’;
-h+=’<div class="st">Schema</div>’;
-h+=’<div class="sb">’+svg+’</div>’;
-h+=’<scr’+‘ipt>window.onload=function(){window.print();};<’+’/scr’+‘ipt>’;
-h+=’</body></html>’;
-w.document.write(h); w.document.close();
-}
+document.getElementById('d1').addEventListener('input', go);
+document.getElementById('d2').addEventListener('input', go);
+document.getElementById('cf').addEventListener('input', go);
+document.getElementById('h').addEventListener('input', go);
 
-function doReset() {
-document.getElementById(‘d1’).value=’’;
-document.getElementById(‘d2’).value=’’;
-document.getElementById(‘cf’).value=’’;
-document.getElementById(‘h’).value=’’;
-LR=null;
-sv(‘angle-val’,’-’); sv(‘dx-val’,’-’); sv(‘L-val’,’-’); sv(‘frac-val’,’-’);
-document.getElementById(‘angle-val’).style.color=’#334155’;
-document.getElementById(‘pill’).className=‘pill ok’;
-pt(’-’);
-document.getElementById(‘schema’).innerHTML=’<text x="300" y="200" text-anchor="middle" fill="#334155" font-size="14" font-family="Inter,sans-serif">Entrez les parametres</text>’;
-sv(‘stag’,’-’); sv(‘ftag-cf’,’-’);
-document.getElementById(‘cf-hint’).textContent=‘brin a brin’;
-document.getElementById(‘cf-hint’).style.color=’#334155’;
-toast(‘Reinitialise’);
-}
-
-function drawD(R1, CF) {
-var W=600, mT=44, mB=50;
-var sc=Math.min(120,(W-80)/2)/R1, r=R1*sc;
-var cx=W/2, cy=mT+r, bot=cy+r+60, H=bot+mB;
-sv(‘stag’,‘1 : ‘+Math.round(1/sc));
-var s=document.getElementById(‘schema’);
-s.setAttribute(‘viewBox’,‘0 0 ‘+W+’ ‘+H);
-var bx1=cx-r, bx2=cx+r, o=’’;
-o+=’<defs><marker id="a" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#eab308"/></marker>’;
-o+=’<radialGradient id="g1" cx="35%" cy="30%"><stop offset="0%" stop-color="#1d4ed8" stop-opacity=".22"/><stop offset="100%" stop-color="#1d4ed8" stop-opacity=".04"/></radialGradient></defs>’;
-o+=’<path d="M'+cx+' '+cy+' L'+bx1+' '+cy+' A'+r+' '+r+' 0 0 1 '+bx2+' '+cy+' Z" fill="rgba(239,68,68,0.08)"/>’;
-o+=’<circle cx="'+cx+'" cy="'+cy+'" r="'+r+'" fill="url(#g1)" stroke="#3b82f6" stroke-width="2.5"/>’;
-o+=’<circle cx="'+cx+'" cy="'+cy+'" r="5" fill="#3b82f6"/>’;
-o+=’<path d="M'+bx1+' '+cy+' A'+r+' '+r+' 0 0 1 '+bx2+' '+cy+'" fill="none" stroke="#ef4444" stroke-width="5" stroke-linecap="round"/>’;
-o+=’<line x1="'+bx1+'" y1="'+bot+'" x2="'+bx1+'" y2="'+cy+'" stroke="#eab308" stroke-width="2.5" stroke-dasharray="8,5"/>’;
-o+=’<polygon points="'+bx1+','+(mT-2)+' '+(bx1-6)+','+(mT+10)+' '+(bx1+6)+','+(mT+10)+'" fill="#eab308"/>’;
-o+=’<line x1="'+bx2+'" y1="'+cy+'" x2="'+bx2+'" y2="'+bot+'" stroke="#eab308" stroke-width="2.5" stroke-dasharray="8,5" marker-end="url(#a)"/>’;
-o+=’<text x="'+cx+'" y="'+(cy-r-14)+'" text-anchor="middle" fill="#60a5fa" font-size="12" font-family="Inter,sans-serif" font-weight="600">TRACTION D’+Math.round(R1*2)+’ mm</text>’;
-o+=’<text x="'+cx+'" y="'+(cy+22)+'" text-anchor="middle" fill="#f87171" font-size="14" font-family="JetBrains Mono,monospace" font-weight="600">a = 180 deg</text>’;
-o+=’<line x1="'+bx1+'" y1="'+(bot+14)+'" x2="'+bx2+'" y2="'+(bot+14)+'" stroke="#1e293b" stroke-width="2"/>’;
-o+=’<line x1="'+bx1+'" y1="'+(bot+10)+'" x2="'+bx1+'" y2="'+(bot+18)+'" stroke="#1e293b" stroke-width="2"/>’;
-o+=’<line x1="'+bx2+'" y1="'+(bot+10)+'" x2="'+bx2+'" y2="'+(bot+18)+'" stroke="#1e293b" stroke-width="2"/>’;
-o+=’<text x="'+cx+'" y="'+(bot+30)+'" text-anchor="middle" fill="#475569" font-size="11" font-family="JetBrains Mono,monospace">CF = ‘+Math.round(R1*2)+’ mm</text>’;
-s.innerHTML=o;
-}
-
-function drawS(p) {
-var xMin=-p.R1, xMax=p.dx+p.R2, yMax=p.R1, yMin=-p.dy-p.R2-40;
-var mL=48,mR=48,mT=52,mB=48,W=600;
-var sc=(W-mL-mR)/(xMax-xMin), H=(yMax-yMin)*sc+mT+mB;
-sv(‘stag’,‘1 : ‘+Math.round(1/sc));
-var s=document.getElementById(‘schema’);
-s.setAttribute(‘viewBox’,‘0 0 ‘+W+’ ‘+H);
-function sx(x){return mL+(x-xMin)*sc;}
-function sy(y){return mT+(yMax-y)*sc;}
-var c1x=sx(0),c1y=sy(0),c2x=sx(p.dx),c2y=sy(-p.dy);
-var r1=p.R1*sc,r2=p.R2*sc;
-var t1x=sx(p.P1x),t1y=sy(p.P1y),t2x=sx(p.P2x),t2y=sy(p.P2y);
-var bx1=sx(-p.R1),bx2=sx(p.dx+p.R2);
-var topY=mT-24,botY=sy(yMin),la=p.alpha>180?1:0;
-var chx=Math.min(c2x+r2+32,W-32),cfy=botY+16,mhY=(c1y+c2y)/2;
-var o=’’;
-o+=’<defs>’;
-o+=’<marker id="a" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#eab308"/></marker>’;
-o+=’<marker id="ca1" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#475569"/></marker>’;
-o+=’<marker id="ca2" markerWidth="8" markerHeight="6" refX="0" refY="3" orient="auto"><polygon points="8 0,0 3,8 6" fill="#475569"/></marker>’;
-o+=’<radialGradient id="g1" cx="35%" cy="30%"><stop offset="0%" stop-color="#1d4ed8" stop-opacity=".2"/><stop offset="100%" stop-color="#1d4ed8" stop-opacity=".03"/></radialGradient>’;
-o+=’<radialGradient id="g2" cx="35%" cy="30%"><stop offset="0%" stop-color="#0f766e" stop-opacity=".2"/><stop offset="100%" stop-color="#0f766e" stop-opacity=".03"/></radialGradient>’;
-o+=’<filter id="glow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>’;
-o+=’</defs>’;
-o+=’<path d="M'+c1x+' '+c1y+' L'+(c1x-r1)+' '+c1y+' A'+r1+' '+r1+' 0 '+la+' 1 '+t1x+' '+t1y+' Z" fill="rgba(239,68,68,0.08)"/>’;
-o+=’<circle cx="'+c1x+'" cy="'+c1y+'" r="'+r1+'" fill="url(#g1)" stroke="#3b82f6" stroke-width="2.5"/>’;
-o+=’<circle cx="'+c1x+'" cy="'+c1y+'" r="5" fill="#3b82f6"/>’;
-o+=’<circle cx="'+c2x+'" cy="'+c2y+'" r="'+r2+'" fill="url(#g2)" stroke="#14b8a6" stroke-width="2.5"/>’;
-o+=’<circle cx="'+c2x+'" cy="'+c2y+'" r="4" fill="#14b8a6"/>’;
-o+=’<line x1="'+c1x+'" y1="'+c1y+'" x2="'+c2x+'" y2="'+c2y+'" stroke="#1e293b" stroke-width="1.5" stroke-dasharray="6,5"/>’;
-o+=’<line x1="'+bx1+'" y1="'+botY+'" x2="'+bx1+'" y2="'+c1y+'" stroke="#eab308" stroke-width="2.5" stroke-dasharray="8,5"/>’;
-o+=’<polygon points="'+bx1+','+(topY+9)+' '+(bx1-6)+','+(topY+20)+' '+(bx1+6)+','+(topY+20)+'" fill="#eab308"/>’;
-o+=’<path d="M'+(c1x-r1)+' '+c1y+' A'+r1+' '+r1+' 0 '+la+' 1 '+t1x+' '+t1y+'" fill="none" stroke="#ef4444" stroke-width="5" stroke-linecap="round" filter="url(#glow)"/>’;
-o+=’<line x1="'+t1x+'" y1="'+t1y+'" x2="'+t2x+'" y2="'+t2y+'" stroke="#eab308" stroke-width="2.5"/>’;
-o+=’<line x1="'+bx2+'" y1="'+c2y+'" x2="'+bx2+'" y2="'+botY+'" stroke="#eab308" stroke-width="2.5" stroke-dasharray="8,5" marker-end="url(#a)"/>’;
-o+=’<text x="'+c1x+'" y="'+(c1y-r1-14)+'" text-anchor="middle" fill="#60a5fa" font-size="12" font-family="Inter,sans-serif" font-weight="600">TRACTION D’+Math.round(p.R1*2)+’ mm</text>’;
-o+=’<text x="'+c2x+'" y="'+(c2y-r2-10)+'" text-anchor="middle" fill="#2dd4bf" font-size="12" font-family="Inter,sans-serif" font-weight="600">DEFL. D’+Math.round(p.R2*2)+’ mm</text>’;
-o+=’<text x="'+(c1x+10)+'" y="'+(c1y+22)+'" fill="#f87171" font-size="14" font-family="JetBrains Mono,monospace" font-weight="600">a = ‘+p.alpha.toFixed(1)+’ deg</text>’;
-o+=’<line x1="'+chx+'" y1="'+c1y+'" x2="'+chx+'" y2="'+c2y+'" stroke="#475569" stroke-width="1.5" marker-start="url(#ca2)" marker-end="url(#ca1)"/>’;
-o+=’<text x="'+(chx+8)+'" y="'+(mhY+4)+'" fill="#475569" font-size="10" font-family="JetBrains Mono,monospace">H=’+Math.round(p.H)+‘mm</text>’;
-o+=’<line x1="'+bx1+'" y1="'+cfy+'" x2="'+bx2+'" y2="'+cfy+'" stroke="#475569" stroke-width="1.5" marker-start="url(#ca2)" marker-end="url(#ca1)"/>’;
-o+=’<line x1="'+bx1+'" y1="'+(cfy-4)+'" x2="'+bx1+'" y2="'+(cfy+4)+'" stroke="#475569" stroke-width="1.5"/>’;
-o+=’<line x1="'+bx2+'" y1="'+(cfy-4)+'" x2="'+bx2+'" y2="'+(cfy+4)+'" stroke="#475569" stroke-width="1.5"/>’;
-o+=’<text x="'+((bx1+bx2)/2)+'" y="'+(cfy+16)+'" text-anchor="middle" fill="#475569" font-size="10" font-family="JetBrains Mono,monospace">CF = ‘+Math.round(p.CF)+’ mm</text>’;
-s.innerHTML=o;
-}
-
-document.getElementById(‘d1’).addEventListener(‘input’, go);
-document.getElementById(‘d2’).addEventListener(‘input’, go);
-document.getElementById(‘cf’).addEventListener(‘input’, go);
-document.getElementById(‘h’).addEventListener(‘input’, go);
-renderH();
 go();
-// Securite : relancer si go() n’a pas produit de resultat
-setTimeout(function(){ if(!LR){ go(); } }, 500);
 </script>
 
 </body>
