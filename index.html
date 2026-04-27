@@ -93,21 +93,21 @@ h1{font-size:clamp(28px,6vw,50px);font-weight:800;letter-spacing:-.03em;line-hei
       <div class="fields">
         <div class="field">
           <label class="fl">&Oslash; Traction</label>
-          <div class="fr"><input type="number" id="d1" value="650" inputmode="decimal" min="1"><span class="fu">mm</span></div>
+          <div class="fr"><input type="number" id="d1" value="999" inputmode="decimal" min="1"><span class="fu">mm</span></div>
         </div>
         <div class="field">
           <label class="fl">&Oslash; D&eacute;flexion</label>
-          <div class="fr"><input type="number" id="d2" value="450" inputmode="decimal" min="0"><span class="fu">mm</span></div>
+          <div class="fr"><input type="number" id="d2" value="333" inputmode="decimal" min="0"><span class="fu">mm</span></div>
           <div class="fh">0 = sans d&eacute;flexion</div>
         </div>
         <div class="field">
           <label class="fl">Entre nappe CF</label>
-          <div class="fr"><input type="number" id="cf" value="1300" inputmode="decimal" min="1"><span class="fu">mm</span></div>
+          <div class="fr"><input type="number" id="cf" value="1111" inputmode="decimal" min="1"><span class="fu">mm</span></div>
           <div class="fhd" id="cf-hint">brin &agrave; brin</div>
         </div>
         <div class="field">
           <label class="fl">Hauteur H</label>
-          <div class="fr"><input type="number" id="h" value="900" inputmode="decimal" min="0"><span class="fu">mm</span></div>
+          <div class="fr"><input type="number" id="h" value="777" inputmode="decimal" min="0"><span class="fu">mm</span></div>
           <div class="fh">axe &agrave; axe vertical</div>
         </div>
       </div>
@@ -450,12 +450,14 @@ o+=’<text x="'+((bx1+bx2)/2)+'" y="'+(cfy+16)+'" text-anchor="middle" fill="#4
 s.innerHTML=o;
 }
 
+document.addEventListener(‘DOMContentLoaded’, function() {
 document.getElementById(‘d1’).addEventListener(‘input’, go);
 document.getElementById(‘d2’).addEventListener(‘input’, go);
 document.getElementById(‘cf’).addEventListener(‘input’, go);
 document.getElementById(‘h’).addEventListener(‘input’, go);
 renderH();
 go();
+});
 </script>
 
 </body>
