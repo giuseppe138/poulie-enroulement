@@ -168,9 +168,13 @@ var lastResult = null;
 var hist = JSON.parse(localStorage.getItem('poulie_hist') || '[]');
 
 document.getElementById('d1').addEventListener('input', go);
+document.getElementById('d1').addEventListener('change', go);
 document.getElementById('d2').addEventListener('input', go);
+document.getElementById('d2').addEventListener('change', go);
 document.getElementById('cf').addEventListener('input', go);
+document.getElementById('cf').addEventListener('change', go);
 document.getElementById('h').addEventListener('input', go);
+document.getElementById('h').addEventListener('change', go);
 
 function computeAngle(D1, D2, CF, H) {
   var R1 = D1 / 2;
